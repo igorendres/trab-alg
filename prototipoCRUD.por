@@ -1,0 +1,302 @@
+programa
+{
+    const inteiro LIMITE = 10
+    const inteiro FORMAS_PAGAMENTO = 3
+
+    funcao inicio()
+    {
+        cadeia nomes[LIMITE], categorias[LIMITE]
+        inteiro quantidades[LIMITE]
+        real precos[LIMITE]
+        inteiro posicao = 0
+
+        inteiro vendas[LIMITE][3]
+        real totalVendasPorPagamento[FORMAS_PAGAMENTO]
+        inteiro vendasDia = 0
+
+        inteiro opcao = 0
+
+        enquanto(opcao != 11) {
+		  menu()        	
+		  escreva("Selecione uma opcao do menu principal: ")
+            leia(opcao)
+
+            se(opcao == 1) {
+                inserirProduto(nomes, quantidades, precos, categorias, posicao)
+            }
+            se(opcao == 2) {
+                listarProdutos(nomes, quantidades, precos, categorias, posicao)
+            }
+            se(opcao == 3) {
+                alterarProduto(nomes, quantidades, precos, categorias, posicao)
+            }
+            se(opcao == 4) {
+                excluirProduto(nomes, quantidades, precos, categorias, posicao)
+            }
+            se(opcao == 5) {
+                relatorioFinanceiro(nomes, quantidades, precos, posicao)
+            }
+            se(opcao == 6) {
+                iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia)
+            }
+            se(opcao == 7) {
+                realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao)
+            }
+            se(opcao == 8) {
+                listarVendasDoDia(vendas, nomes, precos, vendasDia)
+            }
+            se(opcao == 9) {
+                totalizarVendas(totalVendasPorPagamento)
+            }
+            se(opcao == 10) {
+                produtosAcimaDe100(nomes, quantidades, precos, categorias, posicao)
+            }
+            se(opcao == 11) {
+                escreva("Encerrando o sistema...\n")
+            }
+
+            menu()
+        }
+    }
+
+    funcao menu()
+    {
+        escreva("\n--- MENU PRINCIPAL ---\n")
+        escreva("1 - Inserir item no sistema\n")
+        escreva("2 - Listar produtos\n")
+        escreva("3 - Alterar produto\n")
+        escreva("4 - Excluir produto\n")
+        escreva("5 - Relatório financeiro\n")
+        escreva("6 - Iniciar caixa\n")
+        escreva("7 - Realizar venda\n")
+        escreva("8 - Listar produtos vendidos no dia\n")
+        escreva("9 - Totalizar vendas do dia\n")
+        escreva("10 - Produtos com valor acima de R$100\n")
+        escreva("11 - Sair\n")
+    }
+
+    funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    {
+        cadeia nome
+        logico existe = falso
+        escreva("\nDigite o nome do produto: ")
+        leia(nome)
+
+        para(inteiro i = 0; i < posicao; i++) {
+            se (nomes[i] == nome) {
+                existe = verdadeiro
+                inteiro qtdNova
+                escreva("Produto já existe. Digite quantidade a adicionar: ")
+                leia(qtdNova)
+                quantidades[i] = quantidades[i] + qtdNova
+                escreva("Quantidade atualizada!\n")
+                retorne
+            }
+        }
+
+        se (posicao >= LIMITE) {
+            escreva("Limite de produtos atingido!\n")
+        } senao {
+            nomes[posicao] = nome
+            escreva("Digite a categoria: ")
+            leia(categorias[posicao])
+            escreva("Digite a quantidade: ")
+            leia(quantidades[posicao])
+            escreva("Digite o preço unitário: ")
+            leia(precos[posicao])
+            posicao++
+            escreva("Produto inserido com sucesso!\n")
+        }
+    }
+
+    funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    {
+        escreva("\n--- LISTA DE PRODUTOS ---\n")
+        para(inteiro i = 0; i < posicao; i++) {
+            escreva("Nome: ", nomes[i], " | Categoria: ", categorias[i], " | Quantidade: ", quantidades[i], " | Preço: R$ ", precos[i], "\n")
+        }
+    }
+
+    funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    {
+        cadeia nomeBusca
+        escreva("\nDigite o nome do produto a alterar: ")
+        leia(nomeBusca)
+
+        para(inteiro i = 0; i < posicao; i++) {
+            se (nomes[i] == nomeBusca) {
+                escreva("Nova categoria: ")
+                leia(categorias[i])
+                escreva("Nova quantidade: ")
+                leia(quantidades[i])
+                escreva("Novo preço: ")
+                leia(precos[i])
+                escreva("Produto atualizado!\n")
+                retorne
+            }
+        }
+        escreva("Produto não encontrado!\n")
+    }
+
+    funcao excluirProduto(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    {
+        cadeia nomeBusca
+        escreva("\nDigite o nome do produto a excluir: ")
+        leia(nomeBusca)
+
+        para(inteiro i = 0; i < posicao; i++) {
+            se (nomes[i] == nomeBusca) {
+                para(inteiro j = i; j < posicao - 1; j++) {
+                    nomes[j] = nomes[j+1]
+                    categorias[j] = categorias[j+1]
+                    quantidades[j] = quantidades[j+1]
+                    precos[j] = precos[j+1]
+                }
+                posicao--
+                escreva("Produto excluído com sucesso!\n")
+                retorne
+            }
+        }
+        escreva("Produto não encontrado!\n")
+    }
+
+    funcao relatorioFinanceiro(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+    {
+        real total = 0
+        escreva("\n--- RELATÓRIO FINANCEIRO ---\n")
+        para(inteiro i = 0; i < posicao; i++) {
+            real subtotal = quantidades[i] * precos[i]
+            escreva("Produto: ", nomes[i], " | Total em estoque: R$ ", subtotal, "\n")
+            total = total + subtotal
+        }
+        escreva("TOTAL GERAL EM ESTOQUE: R$ ", total, "\n")
+    }
+
+    funcao iniciarCaixa(inteiro vendas[][], real totais[], inteiro vendasDia)
+    {
+        para(inteiro i = 0; i < LIMITE; i++) {
+            para(inteiro j = 0; j < 3; j++) {
+                vendas[i][j] = 0
+            }
+        }
+        para(inteiro i = 0; i < FORMAS_PAGAMENTO; i++) {
+            totais[i] = 0
+        }
+        vendasDia = 0
+        escreva("\nCaixa iniciado com sucesso!\n")
+    }
+
+    funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], 
+                         inteiro vendas[][], real totais[], inteiro vendasDia, inteiro posicao)
+    {
+        cadeia nomeBusca
+        inteiro indice, qtdVenda, forma
+        logico existe = falso
+
+        escreva("\n--- NOVA VENDA ---\n")
+
+        faca {
+            escreva("Digite o nome do produto (ou 'fim' para encerrar): ")
+            leia(nomeBusca)
+
+            se (nomeBusca == "fim") {
+                pare
+            }
+
+            existe = falso
+            para(indice = 0; indice < posicao; indice++) {
+                se (nomes[indice] == nomeBusca) {
+                    existe = verdadeiro
+                    escreva("Quantidade disponível: ", quantidades[indice], "\n")
+                    escreva("Digite a quantidade a vender: ")
+                    leia(qtdVenda)
+
+                    se (qtdVenda > quantidades[indice]) {
+                        escreva("Quantidade insuficiente em estoque!\n")
+                    } senao {
+                        escreva("Forma de pagamento (0-Débito, 1-Crédito, 2-Dinheiro): ")
+                        leia(forma)
+
+                        vendas[vendasDia][0] = indice
+                        vendas[vendasDia][1] = qtdVenda
+                        vendas[vendasDia][2] = forma
+                        vendasDia++
+
+                        quantidades[indice] = quantidades[indice] - qtdVenda
+                        totais[forma] = totais[forma] + (qtdVenda * precos[indice])
+
+                        escreva("Venda registrada com sucesso!\n")
+                    }
+                }
+            }
+
+            se (nao existe) {
+                escreva("Produto não encontrado.\n")
+            }
+
+        } enquanto(nomeBusca == "fim")
+    }
+
+    funcao listarVendasDoDia(inteiro vendas[][], cadeia nomes[], real precos[], inteiro vendasDia)
+    {
+        inteiro i, indice, qtd
+        real valorTotal
+
+        se (vendasDia == 0) {
+            escreva("\nNenhuma venda registrada hoje.\n")
+        } senao {
+            escreva("\n--- PRODUTOS VENDIDOS HOJE ---\n")
+            para(i = 0; i < vendasDia; i++) {
+                indice = vendas[i][0]
+                qtd = vendas[i][1]
+                valorTotal = qtd * precos[indice]
+
+                escreva("Produto: ", nomes[indice], " | Quantidade: ", qtd, " | Total: R$ ", valorTotal, "\n")
+            }
+        }
+    }
+
+    funcao totalizarVendas(real totais[])
+    {
+        escreva("\n--- TOTAL VENDAS POR FORMA DE PAGAMENTO ---\n")
+        escreva("Débito:   R$ ", totais[0], "\n")
+        escreva("Crédito:  R$ ", totais[1], "\n")
+        escreva("Dinheiro: R$ ", totais[2], "\n")
+
+        real totalGeral = totais[0] + totais[1] + totais[2]
+        escreva("Total geral do dia: R$ ", totalGeral, "\n")
+    }
+
+    funcao produtosAcimaDe100(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    {
+        logico encontrou = falso
+        escreva("\n--- PRODUTOS COM VALOR ACIMA DE R$ 100,00 ---\n")
+
+        para(inteiro i = 0; i < posicao; i++) {
+            se (precos[i] > 100) {
+                escreva("Nome: ", nomes[i], "\n")
+                escreva("Categoria: ", categorias[i], "\n")
+                escreva("Quantidade: ", quantidades[i], "\n")
+                escreva("Preço: R$ ", precos[i], "\n")
+                escreva("--------------------------\n")
+                encontrou = verdadeiro
+            }
+        }
+
+        se (nao encontrou) {
+            escreva("Nenhum produto encontrado com valor acima de R$ 100,00.\n")
+        }
+    }
+}
+
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 500; 
+ * @PONTOS-DE-PARADA = 17;
+ * @SIMBOLOS-INSPECIONADOS = {nomes, 120, 33, 5}-{quantidades, 120, 50, 11};
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */
