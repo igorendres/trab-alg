@@ -33,15 +33,19 @@ programa
             leia(perfil)
 
             se (perfil == 1) {
+                limpa()
                 menuEstoque(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
             }
             senao se (perfil == 2) {
+                limpa()
                 menuVenda(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
             }
             senao se (perfil == 3) {
+                limpa()
                 escreva("Encerrando o sistema...\n")
             }
             senao {
+                limpa()
                 escreva("Opção inválida. Tente novamente.\n")
             }
         }
@@ -62,24 +66,31 @@ programa
 	        leia(opcao)
 	
 	        se (opcao == 1) {
+                limpa()
 	            inserirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 2) {
+                limpa()
 	            listarProdutos(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 3) {
+                limpa()
 	            alterarProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 4) {
+                limpa()
 	            excluirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 5) {
+                limpa()
 	            relatorioFinanceiro(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 6) {
+                limpa()
 	            escreva("Voltando ao menu inicial...\n")
 	        }
 	        senao {
+                limpa()
 	            escreva("Opção inválida. Tente novamente.\n")
 	        }
 	    }
@@ -128,7 +139,7 @@ programa
         escreva("\nDigite o nome do produto: ")
         leia(nome)
 
-        para(inteiro i = 0; i < posicao; i++) {
+        para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == nome) {
                 existe = verdadeiro
                 inteiro qtdNova
@@ -156,8 +167,10 @@ programa
     funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         escreva("\n--- LISTA DE PRODUTOS ---\n")
-        para(inteiro i = 0; i < posicao; i++) {
-            escreva("Nome: ", nomes[i], " | Quantidade: ", quantidades[i], " | Preço: R$ ", precos[i], "\n")
+        para(inteiro i = 0; i < LIMITE; i++) {
+            se (nomes[i]!="VAZIO"){
+                escreva("Nome: ", nomes[i], " | Quantidade: ", quantidades[i], " | Preço: R$ ", precos[i], "\n")
+            }
         }
     }
 
