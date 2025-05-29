@@ -53,7 +53,6 @@ programa
 
 	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO){
 	    inteiro opcao = 0
-	
 	    enquanto (opcao != 6) {
 	        escreva("\n--- MENU DE CONTROLE DE ESTOQUE ---\n")
 	        escreva("1 - Inserir item no sistema\n")
@@ -199,15 +198,13 @@ programa
         escreva("\nDigite o nome do produto a excluir: ")
         leia(nomeBusca)
 
-        para(inteiro i = 0; i < posicao; i++) {
+        para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == nomeBusca) {
-                para(inteiro j = i; j < posicao - 1; j++) {
-                    nomes[j] = nomes[j+1]
-                    quantidades[j] = quantidades[j+1]
-                    precos[j] = precos[j+1]
-                }
-                posicao--
-                escreva("Produto excluído com sucesso!\n")
+                nomes[i] = "VAZIO"
+				quantidades[i] = -1
+				precos[i] = -1.0
+	
+				escreva("Produto excluído com sucesso.\n")
                 retorne
             }
         }
