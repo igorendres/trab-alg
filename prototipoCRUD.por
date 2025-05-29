@@ -5,7 +5,7 @@ programa
 
     funcao inicio()
     {
-        cadeia nomes[LIMITE]
+        cadeia nomes[LIMITE], categorias[LIMITE]
         inteiro quantidades[LIMITE]
         real precos[LIMITE]
         inteiro posicao = 0
@@ -14,65 +14,105 @@ programa
         real totalVendasPorPagamento[FORMAS_PAGAMENTO]
         inteiro vendasDia = 0
 
-        inteiro opcao = 0
+	   inteiro perfil = 0
 
-        enquanto(opcao != 11) {
-            menu()        
-            escreva("Selecione uma opcao do menu principal: ")
-            leia(opcao)
+        enquanto (perfil != 3) {
+            escreva("\n===== MENU INICIAL =====\n")
+            escreva("O que você quer fazer?\n")
+            escreva("1 - Controle de estoque\n")
+            escreva("2 - Realização de venda\n")
+            escreva("3 - Sair\n")
+            
+            leia(perfil)
 
-            se(opcao == 1) {
-                inserirProduto(nomes, quantidades, precos, posicao)
+            se (perfil == 1) {
+                menuEstoque(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia)
             }
-            se(opcao == 2) {
-                listarProdutos(nomes, quantidades, precos, posicao)
+            senao se (perfil == 2) {
+                menuVenda(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia)
             }
-            se(opcao == 3) {
-                alterarProduto(nomes, quantidades, precos, posicao)
-            }
-            se(opcao == 4) {
-                excluirProduto(nomes, quantidades, precos, posicao)
-            }
-            se(opcao == 5) {
-                relatorioFinanceiro(nomes, quantidades, precos, posicao)
-            }
-            se(opcao == 6) {
-                iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia)
-            }
-            se(opcao == 7) {
-                realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao)
-            }
-            se(opcao == 8) {
-                listarVendasDoDia(vendas, nomes, precos, vendasDia)
-            }
-            se(opcao == 9) {
-                totalizarVendas(totalVendasPorPagamento)
-            }
-            se(opcao == 10) {
-                produtosAcimaDe100(nomes, quantidades, precos, posicao)
-            }
-            se(opcao == 11) {
+            senao se (perfil == 3) {
                 escreva("Encerrando o sistema...\n")
             }
-            menu()
+            senao {
+                escreva("Opção inválida. Tente novamente.\n")
+            }
         }
     }
 
-    funcao menu()
-    {
-        escreva("\n--- MENU PRINCIPAL ---\n")
-        escreva("1 - Inserir item no sistema\n")
-        escreva("2 - Listar produtos\n")
-        escreva("3 - Alterar produto\n")
-        escreva("4 - Excluir produto\n")
-        escreva("5 - Relatório financeiro\n")
-        escreva("6 - Iniciar caixa\n")
-        escreva("7 - Realizar venda\n")
-        escreva("8 - Listar produtos vendidos no dia\n")
-        escreva("9 - Totalizar vendas do dia\n")
-        escreva("10 - Produtos com valor acima de R$100\n")
-        escreva("11 - Sair\n")
-    }
+	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia){
+	    inteiro opcao = 0
+	
+	    enquanto (opcao != 6) {
+	        escreva("\n--- MENU DE CONTROLE DE ESTOQUE ---\n")
+	        escreva("1 - Inserir item no sistema\n")
+	        escreva("2 - Listar produtos\n")
+	        escreva("3 - Alterar produto\n")
+	        escreva("4 - Excluir produto\n")
+	        escreva("5 - Relatório financeiro\n")
+	        escreva("6 - Voltar ao menu inicial\n")
+	        escreva("Escolha uma opção: ")
+	        leia(opcao)
+	
+	        se (opcao == 1) {
+	            inserirProduto(nomes, quantidades, precos, posicao)
+	        }
+	        senao se (opcao == 2) {
+	            listarProdutos(nomes, quantidades, precos, posicao)
+	        }
+	        senao se (opcao == 3) {
+	            alterarProduto(nomes, quantidades, precos, posicao)
+	        }
+	        senao se (opcao == 4) {
+	            excluirProduto(nomes, quantidades, precos, posicao)
+	        }
+	        senao se (opcao == 5) {
+	            relatorioFinanceiro(nomes, quantidades, precos, posicao)
+	        }
+	        senao se (opcao == 6) {
+	            escreva("Voltando ao menu inicial...\n")
+	        }
+	        senao {
+	            escreva("Opção inválida. Tente novamente.\n")
+	        }
+	    }
+	}
+
+
+    funcao menuVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia)
+	{
+	    inteiro opcao = 0
+	
+	    enquanto (opcao != 5) {
+	        escreva("\n--- MENU DE VENDAS ---\n")
+	        escreva("1 - Iniciar caixa\n")
+	        escreva("2 - Realizar venda\n")
+	        escreva("3 - Listar produtos vendidos no dia\n")
+	        escreva("4 - Totalizar vendas do dia\n")
+	        escreva("5 - Voltar ao menu inicial\n")
+	        escreva("Escolha uma opção: ")
+	        leia(opcao)
+	
+	        se (opcao == 1) {
+	            iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia)
+	        }
+	        senao se (opcao == 2) {
+	            realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao)
+	        }
+	        senao se (opcao == 3) {
+	            listarVendasDoDia(vendas, nomes, precos, vendasDia)
+	        }
+	        senao se (opcao == 4) {
+	            totalizarVendas(totalVendasPorPagamento)
+	        }
+	        senao se (opcao == 5) {
+	            escreva("Voltando ao menu inicial...\n")
+	        }
+	        senao {
+	            escreva("Opção inválida. Tente novamente.\n")
+	        }
+	    }
+	}
 
     funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
     {
@@ -287,9 +327,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 9475; 
+ * @POSICAO-CURSOR = 2654; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {nomes, 77, 33, 5}-{quantidades, 77, 50, 11};
+ * @SIMBOLOS-INSPECIONADOS = {nomes, 117, 33, 5}-{quantidades, 117, 50, 11};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
