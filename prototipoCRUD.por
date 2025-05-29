@@ -5,10 +5,11 @@ programa
 
     funcao inicio()
     {
-        cadeia nomes[LIMITE], categorias[LIMITE]
+        cadeia nomes[LIMITE]
         inteiro quantidades[LIMITE]
         real precos[LIMITE]
         inteiro posicao = 0
+        inteiro i = 0
 
         inteiro vendas[LIMITE][3]
         real totalVendasPorPagamento[FORMAS_PAGAMENTO]
@@ -16,6 +17,12 @@ programa
 
 	   inteiro perfil = 0
 
+	   para (i=0; i<LIMITE; i++){
+		nomes[i] = "VAZIO"
+		quantidades[i] = -1
+		precos[i] = -1.0
+		}
+	
         enquanto (perfil != 3) {
             escreva("\n===== MENU INICIAL =====\n")
             escreva("O que você quer fazer?\n")
@@ -327,9 +334,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2654; 
+ * @POSICAO-CURSOR = 249; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {nomes, 117, 33, 5}-{quantidades, 117, 50, 11};
+ * @SIMBOLOS-INSPECIONADOS = {nomes, 124, 33, 5}-{quantidades, 124, 50, 11}-{nomes, 164, 33, 5};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
