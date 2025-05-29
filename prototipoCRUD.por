@@ -180,7 +180,7 @@ programa
         escreva("\nDigite o nome do produto a alterar: ")
         leia(nomeBusca)
 
-        para(inteiro i = 0; i < posicao; i++) {
+        para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == nomeBusca) {
                 escreva("Nova quantidade: ")
                 leia(quantidades[i])
