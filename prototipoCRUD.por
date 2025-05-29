@@ -5,7 +5,7 @@ programa
 
     funcao inicio()
     {
-        cadeia nomes[LIMITE], categorias[LIMITE]
+        cadeia nomes[LIMITE]
         inteiro quantidades[LIMITE]
         real precos[LIMITE]
         inteiro posicao = 0
@@ -17,21 +17,21 @@ programa
         inteiro opcao = 0
 
         enquanto(opcao != 11) {
-		  menu()        	
-		  escreva("Selecione uma opcao do menu principal: ")
+            menu()        
+            escreva("Selecione uma opcao do menu principal: ")
             leia(opcao)
 
             se(opcao == 1) {
-                inserirProduto(nomes, quantidades, precos, categorias, posicao)
+                inserirProduto(nomes, quantidades, precos, posicao)
             }
             se(opcao == 2) {
-                listarProdutos(nomes, quantidades, precos, categorias, posicao)
+                listarProdutos(nomes, quantidades, precos, posicao)
             }
             se(opcao == 3) {
-                alterarProduto(nomes, quantidades, precos, categorias, posicao)
+                alterarProduto(nomes, quantidades, precos, posicao)
             }
             se(opcao == 4) {
-                excluirProduto(nomes, quantidades, precos, categorias, posicao)
+                excluirProduto(nomes, quantidades, precos, posicao)
             }
             se(opcao == 5) {
                 relatorioFinanceiro(nomes, quantidades, precos, posicao)
@@ -49,12 +49,11 @@ programa
                 totalizarVendas(totalVendasPorPagamento)
             }
             se(opcao == 10) {
-                produtosAcimaDe100(nomes, quantidades, precos, categorias, posicao)
+                produtosAcimaDe100(nomes, quantidades, precos, posicao)
             }
             se(opcao == 11) {
                 escreva("Encerrando o sistema...\n")
             }
-
             menu()
         }
     }
@@ -75,7 +74,7 @@ programa
         escreva("11 - Sair\n")
     }
 
-    funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
     {
         cadeia nome
         logico existe = falso
@@ -98,8 +97,6 @@ programa
             escreva("Limite de produtos atingido!\n")
         } senao {
             nomes[posicao] = nome
-            escreva("Digite a categoria: ")
-            leia(categorias[posicao])
             escreva("Digite a quantidade: ")
             leia(quantidades[posicao])
             escreva("Digite o preço unitário: ")
@@ -109,15 +106,15 @@ programa
         }
     }
 
-    funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
     {
         escreva("\n--- LISTA DE PRODUTOS ---\n")
         para(inteiro i = 0; i < posicao; i++) {
-            escreva("Nome: ", nomes[i], " | Categoria: ", categorias[i], " | Quantidade: ", quantidades[i], " | Preço: R$ ", precos[i], "\n")
+            escreva("Nome: ", nomes[i], " | Quantidade: ", quantidades[i], " | Preço: R$ ", precos[i], "\n")
         }
     }
 
-    funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
     {
         cadeia nomeBusca
         escreva("\nDigite o nome do produto a alterar: ")
@@ -125,8 +122,6 @@ programa
 
         para(inteiro i = 0; i < posicao; i++) {
             se (nomes[i] == nomeBusca) {
-                escreva("Nova categoria: ")
-                leia(categorias[i])
                 escreva("Nova quantidade: ")
                 leia(quantidades[i])
                 escreva("Novo preço: ")
@@ -138,7 +133,7 @@ programa
         escreva("Produto não encontrado!\n")
     }
 
-    funcao excluirProduto(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    funcao excluirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
     {
         cadeia nomeBusca
         escreva("\nDigite o nome do produto a excluir: ")
@@ -148,7 +143,6 @@ programa
             se (nomes[i] == nomeBusca) {
                 para(inteiro j = i; j < posicao - 1; j++) {
                     nomes[j] = nomes[j+1]
-                    categorias[j] = categorias[j+1]
                     quantidades[j] = quantidades[j+1]
                     precos[j] = precos[j+1]
                 }
@@ -267,7 +261,7 @@ programa
         escreva("Total geral do dia: R$ ", totalGeral, "\n")
     }
 
-    funcao produtosAcimaDe100(cadeia nomes[], inteiro quantidades[], real precos[], cadeia categorias[], inteiro posicao)
+    funcao produtosAcimaDe100(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
     {
         logico encontrou = falso
         escreva("\n--- PRODUTOS COM VALOR ACIMA DE R$ 100,00 ---\n")
@@ -275,7 +269,6 @@ programa
         para(inteiro i = 0; i < posicao; i++) {
             se (precos[i] > 100) {
                 escreva("Nome: ", nomes[i], "\n")
-                escreva("Categoria: ", categorias[i], "\n")
                 escreva("Quantidade: ", quantidades[i], "\n")
                 escreva("Preço: R$ ", precos[i], "\n")
                 escreva("--------------------------\n")
@@ -294,9 +287,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 500; 
- * @PONTOS-DE-PARADA = 17;
- * @SIMBOLOS-INSPECIONADOS = {nomes, 120, 33, 5}-{quantidades, 120, 50, 11};
+ * @POSICAO-CURSOR = 9475; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = {nomes, 77, 33, 5}-{quantidades, 77, 50, 11};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
