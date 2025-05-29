@@ -1,10 +1,9 @@
 programa
 {
-    const inteiro LIMITE = 10
-    const inteiro FORMAS_PAGAMENTO = 3
-
     funcao inicio()
     {
+        const inteiro LIMITE = 10
+        const inteiro FORMAS_PAGAMENTO = 3
         cadeia nomes[LIMITE]
         inteiro quantidades[LIMITE]
         real precos[LIMITE]
@@ -25,6 +24,7 @@ programa
 	
         enquanto (perfil != 3) {
             escreva("\n===== MENU INICIAL =====\n")
+            escreva("Bem-vindo à loja de periféricos!\n")
             escreva("O que você quer fazer?\n")
             escreva("1 - Controle de estoque\n")
             escreva("2 - Realização de venda\n")
@@ -33,10 +33,10 @@ programa
             leia(perfil)
 
             se (perfil == 1) {
-                menuEstoque(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia)
+                menuEstoque(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
             }
             senao se (perfil == 2) {
-                menuVenda(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia)
+                menuVenda(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
             }
             senao se (perfil == 3) {
                 escreva("Encerrando o sistema...\n")
@@ -47,7 +47,7 @@ programa
         }
     }
 
-	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia){
+	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO){
 	    inteiro opcao = 0
 	
 	    enquanto (opcao != 6) {
@@ -62,19 +62,19 @@ programa
 	        leia(opcao)
 	
 	        se (opcao == 1) {
-	            inserirProduto(nomes, quantidades, precos, posicao)
+	            inserirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 2) {
-	            listarProdutos(nomes, quantidades, precos, posicao)
+	            listarProdutos(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 3) {
-	            alterarProduto(nomes, quantidades, precos, posicao)
+	            alterarProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 4) {
-	            excluirProduto(nomes, quantidades, precos, posicao)
+	            excluirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 5) {
-	            relatorioFinanceiro(nomes, quantidades, precos, posicao)
+	            relatorioFinanceiro(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 6) {
 	            escreva("Voltando ao menu inicial...\n")
@@ -86,7 +86,7 @@ programa
 	}
 
 
-    funcao menuVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia)
+    funcao menuVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
 	{
 	    inteiro opcao = 0
 	
@@ -101,16 +101,16 @@ programa
 	        leia(opcao)
 	
 	        se (opcao == 1) {
-	            iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia)
+	            iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 2) {
-	            realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao)
+	            realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 3) {
-	            listarVendasDoDia(vendas, nomes, precos, vendasDia)
+	            listarVendasDoDia(vendas, nomes, precos, vendasDia, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 4) {
-	            totalizarVendas(totalVendasPorPagamento)
+	            totalizarVendas(totalVendasPorPagamento, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 5) {
 	            escreva("Voltando ao menu inicial...\n")
@@ -121,7 +121,7 @@ programa
 	    }
 	}
 
-    funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+    funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nome
         logico existe = falso
@@ -153,7 +153,7 @@ programa
         }
     }
 
-    funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+    funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         escreva("\n--- LISTA DE PRODUTOS ---\n")
         para(inteiro i = 0; i < posicao; i++) {
@@ -161,7 +161,7 @@ programa
         }
     }
 
-    funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+    funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
         escreva("\nDigite o nome do produto a alterar: ")
@@ -180,7 +180,7 @@ programa
         escreva("Produto não encontrado!\n")
     }
 
-    funcao excluirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+    funcao excluirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
         escreva("\nDigite o nome do produto a excluir: ")
@@ -201,7 +201,7 @@ programa
         escreva("Produto não encontrado!\n")
     }
 
-    funcao relatorioFinanceiro(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+    funcao relatorioFinanceiro(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         real total = 0
         escreva("\n--- RELATÓRIO FINANCEIRO ---\n")
@@ -213,7 +213,7 @@ programa
         escreva("TOTAL GERAL EM ESTOQUE: R$ ", total, "\n")
     }
 
-    funcao iniciarCaixa(inteiro vendas[][], real totais[], inteiro vendasDia)
+    funcao iniciarCaixa(inteiro vendas[][], real totais[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         para(inteiro i = 0; i < LIMITE; i++) {
             para(inteiro j = 0; j < 3; j++) {
@@ -227,8 +227,7 @@ programa
         escreva("\nCaixa iniciado com sucesso!\n")
     }
 
-    funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], 
-                         inteiro vendas[][], real totais[], inteiro vendasDia, inteiro posicao)
+    funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro vendas[][], real totais[], inteiro vendasDia, inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
         inteiro indice, qtdVenda, forma
@@ -278,7 +277,7 @@ programa
         } enquanto(nomeBusca == "fim")
     }
 
-    funcao listarVendasDoDia(inteiro vendas[][], cadeia nomes[], real precos[], inteiro vendasDia)
+    funcao listarVendasDoDia(inteiro vendas[][], cadeia nomes[], real precos[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         inteiro i, indice, qtd
         real valorTotal
@@ -297,7 +296,7 @@ programa
         }
     }
 
-    funcao totalizarVendas(real totais[])
+    funcao totalizarVendas(real totais[], inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         escreva("\n--- TOTAL VENDAS POR FORMA DE PAGAMENTO ---\n")
         escreva("Débito:   R$ ", totais[0], "\n")
@@ -308,7 +307,8 @@ programa
         escreva("Total geral do dia: R$ ", totalGeral, "\n")
     }
 
-    funcao produtosAcimaDe100(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao)
+//deixar dinamico, produtos acima de x
+    funcao produtosAcimaDe100(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         logico encontrou = falso
         escreva("\n--- PRODUTOS COM VALOR ACIMA DE R$ 100,00 ---\n")
