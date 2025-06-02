@@ -116,10 +116,10 @@ programa
 	        leia(opcao)
 	
 	        se (opcao == 1) {
-	            iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
+	            vendasDia = iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 2) {
-	            realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao, LIMITE, FORMAS_PAGAMENTO)
+	            vendasDia = realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 3) {
 	            listarVendasDoDia(vendas, nomes, precos, vendasDia, LIMITE, FORMAS_PAGAMENTO)
@@ -257,7 +257,7 @@ programa
         }
     }
 
-    funcao iniciarCaixa(inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    funcao inteiro iniciarCaixa(inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         para(inteiro i = 0; i < LIMITE; i++) {
             vendas[i][0] = -1
@@ -269,9 +269,10 @@ programa
         }
         vendasDia = 0
         escreva("\nCaixa iniciado com sucesso!\n")
+        retorne vendasDia
     }
 
-    funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    funcao inteiro realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
         inteiro i, qtdVenda, forma
@@ -294,7 +295,7 @@ programa
                     escreva("Quantidade disponível: ", quantidades[i], "\n")
                     escreva("Digite a quantidade a vender: ")
                     leia(qtdVenda)
-
+                    // qtd nao pode ser 0
                     se (qtdVenda > quantidades[i]) {
                         escreva("Quantidade insuficiente em estoque!\n")
                     } senao {
@@ -319,6 +320,8 @@ programa
             }
 
         } enquanto(nomeBusca == "fim")
+
+        retorne vendasDia
     }
 
     funcao listarVendasDoDia(inteiro vendas[][], cadeia nomes[], real precos[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
