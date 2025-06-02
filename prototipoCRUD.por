@@ -265,7 +265,7 @@ programa
             vendas[i][2] = -1
         }
         para(inteiro i = 0; i < FORMAS_PAGAMENTO; i++) {
-            totalVendasPorPagamento[i] = -1.0
+            totalVendasPorPagamento[i] = 0
         }
         vendasDia = 0
         escreva("\nCaixa iniciado com sucesso!\n")
@@ -274,7 +274,7 @@ programa
     funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
-        inteiro indice, qtdVenda, forma
+        inteiro i, qtdVenda, forma
         logico existe = falso
 
         escreva("\n--- NOVA VENDA ---\n")
@@ -288,26 +288,26 @@ programa
             }
 
             existe = falso
-            para(indice = 0; indice < posicao; indice++) {
-                se (nomes[indice] == nomeBusca) {
+            para(i = 0; i < LIMITE; i++) {
+                se (nomes[i] == nomeBusca) {
                     existe = verdadeiro
-                    escreva("Quantidade disponível: ", quantidades[indice], "\n")
+                    escreva("Quantidade disponível: ", quantidades[i], "\n")
                     escreva("Digite a quantidade a vender: ")
                     leia(qtdVenda)
 
-                    se (qtdVenda > quantidades[indice]) {
+                    se (qtdVenda > quantidades[i]) {
                         escreva("Quantidade insuficiente em estoque!\n")
                     } senao {
                         escreva("Forma de pagamento (0-Débito, 1-Crédito, 2-Dinheiro): ")
                         leia(forma)
 
-                        vendas[vendasDia][0] = indice
+                        vendas[vendasDia][0] = i
                         vendas[vendasDia][1] = qtdVenda
                         vendas[vendasDia][2] = forma
                         vendasDia++
 
-                        quantidades[indice] = quantidades[indice] - qtdVenda
-                        totalVendasPorPagamento[forma] = totalVendasPorPagamento[forma] + (qtdVenda * precos[indice])
+                        quantidades[i] = quantidades[i] - qtdVenda
+                        totalVendasPorPagamento[forma] = totalVendasPorPagamento[forma] + (qtdVenda * precos[i])
 
                         escreva("Venda registrada com sucesso!\n")
                     }
