@@ -53,14 +53,15 @@ programa
 
 	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO){
 	    inteiro opcao = 0
-	    enquanto (opcao != 6) {
+	    enquanto (opcao != 7) {
 	        escreva("\n--- MENU DE CONTROLE DE ESTOQUE ---\n")
 	        escreva("1 - Inserir item no sistema\n")
 	        escreva("2 - Listar produtos\n")
 	        escreva("3 - Alterar produto\n")
 	        escreva("4 - Excluir produto\n")
 	        escreva("5 - Relatório financeiro\n")
-	        escreva("6 - Voltar ao menu inicial\n")
+	        escreva("6 - Consultar produtos por valor\n")
+            escreva("7 - Voltar ao menu inicial\n")
 	        escreva("Escolha uma opção: ")
 	        leia(opcao)
 	
@@ -86,8 +87,12 @@ programa
 	        }
 	        senao se (opcao == 6) {
                 limpa()
-	            escreva("Voltando ao menu inicial...\n")
+                consultaProdutosPorValorMinimo(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
+            senao se (opcao == 7){
+                limpa()
+	            escreva("Voltando ao menu inicial...\n")            
+            }
 	        senao {
                 limpa()
 	            escreva("Opção inválida. Tente novamente.\n")
@@ -227,6 +232,31 @@ programa
         escreva("TOTAL GERAL EM ESTOQUE: R$ ", total, "\n")
     }
 
+    funcao consultaProdutosPorValorMinimo(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    {
+        real valorMinimo
+        escreva("Digite o valor mínimo para listar os produtos: R$ ")
+        leia(valorMinimo)
+        limpa()
+
+        logico encontrou = falso
+        escreva("\n--- PRODUTOS COM VALOR ACIMA DE R$ ", valorMinimo, " ---\n\n")
+
+        para(inteiro i = 0; i < posicao; i++) {
+            se (precos[i] >= valorMinimo) {
+                escreva("Nome: ", nomes[i], "\n")
+                escreva("Quantidade em estoque: ", quantidades[i], "\n")
+                escreva("Preço: R$ ", precos[i], "\n")
+                escreva("------------------------------\n")
+                encontrou = verdadeiro
+            }
+        }
+
+        se (nao encontrou) {
+            escreva("Nenhum produto encontrado com valor igual ou acima de R$ ", valorMinimo, ".\n")
+        }
+    }
+
     funcao iniciarCaixa(inteiro vendas[][], real totais[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         para(inteiro i = 0; i < LIMITE; i++) {
@@ -319,27 +349,6 @@ programa
 
         real totalGeral = totais[0] + totais[1] + totais[2]
         escreva("Total geral do dia: R$ ", totalGeral, "\n")
-    }
-
-//deixar dinamico, produtos acima de x
-    funcao produtosAcimaDe100(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
-    {
-        logico encontrou = falso
-        escreva("\n--- PRODUTOS COM VALOR ACIMA DE R$ 100,00 ---\n")
-
-        para(inteiro i = 0; i < posicao; i++) {
-            se (precos[i] > 100) {
-                escreva("Nome: ", nomes[i], "\n")
-                escreva("Quantidade: ", quantidades[i], "\n")
-                escreva("Preço: R$ ", precos[i], "\n")
-                escreva("--------------------------\n")
-                encontrou = verdadeiro
-            }
-        }
-
-        se (nao encontrou) {
-            escreva("Nenhum produto encontrado com valor acima de R$ 100,00.\n")
-        }
     }
 }
 
