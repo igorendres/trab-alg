@@ -257,21 +257,21 @@ programa
         }
     }
 
-    funcao iniciarCaixa(inteiro vendas[][], real totais[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    funcao iniciarCaixa(inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         para(inteiro i = 0; i < LIMITE; i++) {
-            para(inteiro j = 0; j < 3; j++) {
-                vendas[i][j] = 0
-            }
+            vendas[i][0] = -1
+            vendas[i][1] = -1
+            vendas[i][2] = -1
         }
         para(inteiro i = 0; i < FORMAS_PAGAMENTO; i++) {
-            totais[i] = 0
+            totalVendasPorPagamento[i] = -1.0
         }
         vendasDia = 0
         escreva("\nCaixa iniciado com sucesso!\n")
     }
 
-    funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro vendas[][], real totais[], inteiro vendasDia, inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    funcao realizarVenda(cadeia nomes[], inteiro quantidades[], real precos[], inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
         inteiro indice, qtdVenda, forma
@@ -307,7 +307,7 @@ programa
                         vendasDia++
 
                         quantidades[indice] = quantidades[indice] - qtdVenda
-                        totais[forma] = totais[forma] + (qtdVenda * precos[indice])
+                        totalVendasPorPagamento[forma] = totalVendasPorPagamento[forma] + (qtdVenda * precos[indice])
 
                         escreva("Venda registrada com sucesso!\n")
                     }
@@ -340,14 +340,14 @@ programa
         }
     }
 
-    funcao totalizarVendas(real totais[], inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    funcao totalizarVendas(real totalVendasPorPagamento[], inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         escreva("\n--- TOTAL VENDAS POR FORMA DE PAGAMENTO ---\n")
-        escreva("Débito:   R$ ", totais[0], "\n")
-        escreva("Crédito:  R$ ", totais[1], "\n")
-        escreva("Dinheiro: R$ ", totais[2], "\n")
+        escreva("Débito:   R$ ", totalVendasPorPagamento[0], "\n")
+        escreva("Crédito:  R$ ", totalVendasPorPagamento[1], "\n")
+        escreva("Dinheiro: R$ ", totalVendasPorPagamento[2], "\n")
 
-        real totalGeral = totais[0] + totais[1] + totais[2]
+        real totalGeral = totalVendasPorPagamento[0] + totalVendasPorPagamento[1] + totalVendasPorPagamento[2]
         escreva("Total geral do dia: R$ ", totalGeral, "\n")
     }
 }
