@@ -296,7 +296,7 @@ programa
                     escreva("Digite a quantidade a vender: ")
                     leia(qtdVenda)
                     // qtd nao pode ser 0
-                    se (qtdVenda > quantidades[i]) {
+                    se (qtdVenda > quantidades[i] || quantidades[i] == 0) {
                         escreva("Quantidade insuficiente em estoque!\n")
                     } senao {
                         escreva("Forma de pagamento (0-Débito, 1-Crédito, 2-Dinheiro): ")
