@@ -17,9 +17,9 @@ programa
 	   inteiro perfil = 0
 
 	   para (i=0; i<LIMITE; i++){
-		nomes[i] = "VAZIO"
-		quantidades[i] = -1
-		precos[i] = -1.0
+            nomes[i] = "VAZIO"
+            quantidades[i] = -1
+            precos[i] = -1.0
 		}
 	
         enquanto (perfil != 3) {
