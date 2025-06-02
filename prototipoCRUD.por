@@ -215,10 +215,12 @@ programa
     {
         real total = 0
         escreva("\n--- RELATÓRIO FINANCEIRO ---\n")
-        para(inteiro i = 0; i < posicao; i++) {
-            real subtotal = quantidades[i] * precos[i]
-            escreva("Produto: ", nomes[i], " | Total em estoque: R$ ", subtotal, "\n")
-            total = total + subtotal
+        para(inteiro i = 0; i < LIMITE; i++) {
+            se (nomes[i]!="VAZIO"){
+                real subtotal = quantidades[i] * precos[i]
+                escreva("Produto: ", nomes[i], " | Total em estoque: R$ ", subtotal, "\n")
+                total = total + subtotal
+            }
         }
         escreva("TOTAL GERAL EM ESTOQUE: R$ ", total, "\n")
     }
