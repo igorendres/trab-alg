@@ -66,7 +66,7 @@ programa
 	
 	        se (opcao == 1) {
                 limpa()
-	            inserirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                posicao = inserirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
 	        }
 	        senao se (opcao == 2) {
                 limpa()
@@ -131,14 +131,14 @@ programa
 	    }
 	}
 
-    funcao inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    funcao inteiro inserirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nome
         logico existe = falso
         escreva("\nDigite o nome do produto: ")
         leia(nome)
 
-        para(inteiro i = 0; i < LIMITE; i++) {
+        para(inteiro i = 0; i < posicao; i++) {
             se (nomes[i] == nome) {
                 existe = verdadeiro
                 inteiro qtdNova
@@ -146,7 +146,7 @@ programa
                 leia(qtdNova)
                 quantidades[i] = quantidades[i] + qtdNova
                 escreva("Quantidade atualizada!\n")
-                retorne
+                retorne posicao
             }
         }
 
@@ -161,6 +161,8 @@ programa
             posicao++
             escreva("Produto inserido com sucesso!\n")
         }
+
+        retorne posicao
     }
 
     funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
