@@ -1,3 +1,6 @@
+// Trabalho Final de Ana Claudia Wurch Seibert e Igor de Medeiros Endres
+// TADS 2025/1 - Professor: Ìgor Lorenzato Almeida
+
 programa
 {
     funcao inicio()
@@ -61,7 +64,7 @@ programa
 	        escreva("4 - Excluir produto\n")
 	        escreva("5 - Relatório financeiro\n")
 	        escreva("6 - Consultar produtos por valor\n")
-            escreva("7 - Voltar ao menu inicial\n")
+             escreva("7 - Voltar ao menu inicial\n")
 	        escreva("Escolha uma opção: ")
 	        leia(opcao)
 	
@@ -172,15 +175,21 @@ programa
 
     funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
+    	   inteiro produtosEncontrados = 0
         escreva("\n--- LISTA DE PRODUTOS ---\n")
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i]!="VAZIO"){
                 escreva("Nome: ", nomes[i], " | Quantidade: ", quantidades[i], " | Preço: R$ ", precos[i], "\n")
+                produtosEncontrados = produtosEncontrados + 1
             }
+        }
+        se (produtosEncontrados == 0) {
+        	escreva("Nenhum produto cadastrado no sistema!")
         }
     }
 
     funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
+    //Atualizar codigo para que a mudanca do produto seja flexivel
     {
         cadeia nomeBusca
         escreva("\nDigite o nome do produto a alterar: ")
@@ -295,8 +304,8 @@ programa
                     escreva("Quantidade disponível: ", quantidades[i], "\n")
                     escreva("Digite a quantidade a vender: ")
                     leia(qtdVenda)
-                    // qtd nao pode ser 0
-                    se (qtdVenda > quantidades[i] || quantidades[i] == 0) {
+                    
+                    se (qtdVenda > quantidades[i] ou quantidades[i] == 0) {
                         escreva("Quantidade insuficiente em estoque!\n")
                     } senao {
                         escreva("Forma de pagamento (0-Débito, 1-Crédito, 2-Dinheiro): ")
@@ -360,9 +369,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 249; 
+ * @POSICAO-CURSOR = 2303; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {nomes, 124, 33, 5}-{quantidades, 124, 50, 11}-{nomes, 164, 33, 5};
+ * @SIMBOLOS-INSPECIONADOS = {nomes, 10, 15, 5}-{quantidades, 11, 16, 11};
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
