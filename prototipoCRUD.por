@@ -45,21 +45,25 @@ programa
             
             leia(perfil)
 
-            se (perfil == 1) {
-                limpa()
-                menuEstoque(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
-            }
-            senao se (perfil == 2) {
-                limpa()
-                menuVenda(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
-            }
-            senao se (perfil == 3) {
-                limpa()
-                escreva("Encerrando o sistema...\n")
-            }
-            senao {
-                limpa()
-                escreva("Opção inválida. Tente novamente.\n")
+            escolha (perfil){
+                caso 1:
+                    limpa()
+                    menuEstoque(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 2:
+                    limpa()
+                    menuVenda(nomes, quantidades, precos, posicao, vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 3: 
+                    limpa()
+                    escreva("Encerrando o sistema...\n")
+                    pare
+                
+                caso contrario:
+                    limpa()
+                    escreva("Opção inválida. Tente novamente.\n")
             }
         }
     }
