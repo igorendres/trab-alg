@@ -83,38 +83,46 @@ programa
 	        escreva("Escolha uma opção: ")
 	        leia(opcao)
 	
-	        se (opcao == 1) {
-                limpa()
-                posicao = inserirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 2) {
-                limpa()
-	            listarProdutos(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 3) {
-                limpa()
-	            alterarProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 4) {
-                limpa()
-	            excluirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 5) {
-                limpa()
-	            relatorioFinanceiro(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 6) {
-                limpa()
-                consultaProdutosPorValorMinimo(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-            senao se (opcao == 7){
-                limpa()
-	            escreva("Voltando ao menu inicial...\n")            
+            escolha (opcao){
+                caso 1:
+                    limpa()
+                    posicao = inserirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 2:
+                    limpa()
+                    listarProdutos(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+                
+                caso 3:
+                    limpa()
+                    alterarProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+                
+                caso 4:
+                    limpa()
+                    excluirProduto(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+                
+                caso 5:
+                    limpa()
+                    relatorioFinanceiro(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare 
+                
+                caso 6:
+                    limpa()
+                    consultaProdutosPorValorMinimo(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 7:
+                    limpa()
+                    escreva("Voltando ao menu inicial...\n")            
+                    pare
+
+                caso contrario:
+                    limpa()
+                    escreva("Opção inválida. Tente novamente.\n")
             }
-	        senao {
-                limpa()
-	            escreva("Opção inválida. Tente novamente.\n")
-	        }
 	    }
 	}
 
@@ -133,24 +141,30 @@ programa
 	        escreva("Escolha uma opção: ")
 	        leia(opcao)
 	
-	        se (opcao == 1) {
-	            vendasDia = iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 2) {
-	            vendasDia = realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 3) {
-	            listarVendasDoDia(vendas, nomes, precos, vendasDia, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 4) {
-	            totalizarVendas(totalVendasPorPagamento, LIMITE, FORMAS_PAGAMENTO)
-	        }
-	        senao se (opcao == 5) {
-	            escreva("Voltando ao menu inicial...\n")
-	        }
-	        senao {
-	            escreva("Opção inválida. Tente novamente.\n")
-	        }
+            escolha (opcao){
+                caso 1:
+                    vendasDia = iniciarCaixa(vendas, totalVendasPorPagamento, vendasDia, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 2:
+                    vendasDia = realizarVenda(nomes, quantidades, precos, vendas, totalVendasPorPagamento, vendasDia, posicao, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 3:
+                    listarVendasDoDia(vendas, nomes, precos, vendasDia, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 4:
+                    totalizarVendas(totalVendasPorPagamento, LIMITE, FORMAS_PAGAMENTO)
+                    pare
+
+                caso 5:
+                    escreva("Voltando ao menu inicial...\n")
+                    pare
+                
+                caso contrario:
+                    escreva("Opção inválida. Tente novamente.\n")
+            }
 	    }
 	}
 
