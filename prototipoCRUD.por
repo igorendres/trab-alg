@@ -10,6 +10,7 @@
         para que o usuário saiba quais produtos fazer estoque*/
 
 // transformar blocos grandes de se - senao se em blocos de escolha caso
+// atualizar a função alterarProduto para que a mudanca do produto seja flexivel
 
 programa
 {
@@ -157,13 +158,13 @@ programa
     {
         cadeia nome
         logico existe = falso
+        inteiro qtdNova
         escreva("\nDigite o nome do produto: ")
         leia(nome)
 
         para(inteiro i = 0; i < posicao; i++) {
             se (nomes[i] == nome) {
                 existe = verdadeiro
-                inteiro qtdNova
                 escreva("Produto já existe. Digite quantidade a adicionar: ")
                 leia(qtdNova)
                 quantidades[i] = quantidades[i] + qtdNova
@@ -189,7 +190,7 @@ programa
 
     funcao listarProdutos(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
-    	   inteiro produtosEncontrados = 0
+    	inteiro produtosEncontrados = 0
         escreva("\n--- LISTA DE PRODUTOS ---\n")
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i]!="VAZIO"){
@@ -203,7 +204,6 @@ programa
     }
 
     funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
-    //Atualizar codigo para que a mudanca do produto seja flexivel
     {
         cadeia nomeBusca
         escreva("\nDigite o nome do produto a alterar: ")
@@ -368,12 +368,13 @@ programa
 
     funcao totalizarVendas(real totalVendasPorPagamento[], inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
+        real totalGeral
         escreva("\n--- TOTAL VENDAS POR FORMA DE PAGAMENTO ---\n")
         escreva("Débito:   R$ ", totalVendasPorPagamento[0], "\n")
         escreva("Crédito:  R$ ", totalVendasPorPagamento[1], "\n")
         escreva("Dinheiro: R$ ", totalVendasPorPagamento[2], "\n")
 
-        real totalGeral = totalVendasPorPagamento[0] + totalVendasPorPagamento[1] + totalVendasPorPagamento[2]
+        totalGeral = totalVendasPorPagamento[0] + totalVendasPorPagamento[1] + totalVendasPorPagamento[2]
         escreva("Total geral do dia: R$ ", totalGeral, "\n")
     }
 }
