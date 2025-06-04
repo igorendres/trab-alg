@@ -3,7 +3,7 @@
 
 /* feedback igor: 
     - nao usar funcoes para menus, colocar tudo dentro da funcao inicio
-    - nao criar variavel no meio da funcao, criar tudo no inicio da funcao
+    - nao criar variavel no meio da funcao, criar tudo no inicio da funcao -- FEITO
     - criar uma função de busca para padronizar o código e chamar ela dentro das outras funções
     - sugestão: criar outra função de busca personalizada, que busca pela quantidade:
         ex: digitar um numero de quantidade e buscar os produtos que tem menos que esse valor,
