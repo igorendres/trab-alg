@@ -79,7 +79,7 @@ programa
 	        escreva("4 - Excluir produto\n")
 	        escreva("5 - Relatório financeiro\n")
 	        escreva("6 - Consultar produtos por valor\n")
-             escreva("7 - Voltar ao menu inicial\n")
+            escreva("7 - Voltar ao menu inicial\n")
 	        escreva("Escolha uma opção: ")
 	        leia(opcao)
 	
