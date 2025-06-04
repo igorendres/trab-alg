@@ -2,14 +2,9 @@
 // TADS 2025/1 - Professor: Ìgor Lorenzato Almeida
 
 /* feedback igor: 
-    - nao usar funcoes para menus, colocar tudo dentro da funcao inicio
-    - nao criar variavel no meio da funcao, criar tudo no inicio da funcao -- FEITO
-    - criar uma função de busca para padronizar o código e chamar ela dentro das outras funções
     - sugestão: criar outra função de busca personalizada, que busca pela quantidade:
         ex: digitar um numero de quantidade e buscar os produtos que tem menos que esse valor,
         para que o usuário saiba quais produtos fazer estoque*/
-
-// transformar blocos grandes de se - senao se em blocos de escolha caso
 // atualizar a função alterarProduto para que a mudanca do produto seja flexivel
 
 programa
