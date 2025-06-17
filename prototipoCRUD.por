@@ -1,11 +1,7 @@
 // Trabalho Final de Ana Claudia Wurch Seibert e Igor de Medeiros Endres
 // TADS 2025/1 - Professor: Ìgor Lorenzato Almeida
 
-/* feedback igor: 
-    - sugestão: criar outra função de busca personalizada, que busca pela quantidade:
-        ex: digitar um numero de quantidade e buscar os produtos que tem menos que esse valor,
-        para que o usuário saiba quais produtos fazer estoque*/
-// atualizar a função alterarProduto para que a mudanca do produto seja flexivel
+// bug ao tentar inserir
 
 programa
 {
@@ -66,7 +62,7 @@ programa
 
 	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO){
 	    inteiro opcao = 0
-	    enquanto (opcao != 7) {
+	    enquanto (opcao != 8) {
 	        escreva("\n--- MENU DE CONTROLE DE ESTOQUE ---\n")
 	        escreva("1 - Inserir item no sistema\n")
 	        escreva("2 - Listar produtos\n")
@@ -74,7 +70,8 @@ programa
 	        escreva("4 - Excluir produto\n")
 	        escreva("5 - Relatório financeiro\n")
 	        escreva("6 - Consultar produtos por valor\n")
-            escreva("7 - Voltar ao menu inicial\n")
+            escreva("7 - Consultar produtos com baixa quantidade\n")
+            escreva("8 - Voltar ao menu inicial\n")
 	        escreva("Escolha uma opção: ")
 	        leia(opcao)
 	
@@ -108,8 +105,13 @@ programa
                     limpa()
                     consultaProdutosPorValorMinimo(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
                     pare
-
+                
                 caso 7:
+                    limpa()
+                    consultaProdutosPorQuantidade(nomes, quantidades, precos, posicao, LIMITE)
+                    pare
+
+                caso 8:
                     limpa()
                     escreva("Voltando ao menu inicial...\n")            
                     pare
@@ -215,19 +217,45 @@ programa
     funcao alterarProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
+        inteiro opcao
+
         escreva("\nDigite o nome do produto a alterar: ")
         leia(nomeBusca)
 
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == nomeBusca) {
-                escreva("Nova quantidade: ")
-                leia(quantidades[i])
-                escreva("Novo preço: ")
-                leia(precos[i])
-                escreva("Produto atualizado!\n")
+                escreva("\nProduto encontrado! O que deseja alterar?\n")
+                escreva("1 - Nome\n")
+                escreva("2 - Quantidade\n")
+                escreva("3 - Preço\n")
+                escreva("4 - Cancelar\n")
+                leia(opcao)
+
+                escolha (opcao) {
+                    caso 1:
+                        escreva("Digite o novo nome: ")
+                        leia(nomes[i])
+                        pare
+                    caso 2:
+                        escreva("Digite a nova quantidade: ")
+                        leia(quantidades[i])
+                        pare
+                    caso 3:
+                        escreva("Digite o novo preço: ")
+                        leia(precos[i])
+                        pare
+                    caso 4:
+                        escreva("Alteração cancelada.\n")
+                        pare
+                    caso contrario:
+                        escreva("Opção inválida.\n")
+                }
+
+                escreva("Produto atualizado com sucesso!\n")
                 retorne
             }
         }
+
         escreva("Produto não encontrado!\n")
     }
 
@@ -286,6 +314,32 @@ programa
 
         se (nao encontrou) {
             escreva("Nenhum produto encontrado com valor igual ou acima de R$ ", valorMinimo, ".\n")
+        }
+    }
+
+    funcao consultaProdutosPorQuantidade(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE)
+    {
+        inteiro limiteQuantidade
+        logico encontrou = falso
+
+        escreva("Digite o valor máximo de quantidade para exibir os produtos: ")
+        leia(limiteQuantidade)
+        limpa()
+
+        escreva("\n--- PRODUTOS COM QUANTIDADE MENOR QUE ", limiteQuantidade, " ---\n\n")
+
+        para(inteiro i = 0; i < posicao; i++) {
+            se (quantidades[i] != -1 e quantidades[i] < limiteQuantidade) {
+                escreva("Nome: ", nomes[i], "\n")
+                escreva("Quantidade: ", quantidades[i], "\n")
+                escreva("Preço: R$ ", precos[i], "\n")
+                escreva("------------------------------\n")
+                encontrou = verdadeiro
+            }
+        }
+
+        se (nao encontrou) {
+            escreva("Nenhum produto com quantidade inferior a ", limiteQuantidade, " encontrado.\n")
         }
     }
 
