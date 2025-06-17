@@ -1,8 +1,6 @@
 // Trabalho Final de Ana Claudia Wurch Seibert e Igor de Medeiros Endres
 // TADS 2025/1 - Professor: Ìgor Lorenzato Almeida
 
-// bug ao tentar inserir
-
 programa
 {
     funcao inicio()
@@ -174,7 +172,6 @@ programa
         escreva("\nDigite o nome do produto: ")
         leia(nome)
 
-        // Verifica se já existe
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == nome) {
                 existe = verdadeiro
@@ -186,7 +183,6 @@ programa
             }
         }
 
-        // Procura posição vazia
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == "VAZIO") {
                 nomes[i] = nome
@@ -196,7 +192,6 @@ programa
                 leia(precos[i])
                 escreva("Produto inserido com sucesso!\n")
 
-                // Se i == posicao, então estamos inserindo ao final da lista visível
                 se (i == posicao) {
                     posicao = posicao + 1
                 }
