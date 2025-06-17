@@ -170,10 +170,12 @@ programa
         cadeia nome
         logico existe = falso
         inteiro qtdNova
+
         escreva("\nDigite o nome do produto: ")
         leia(nome)
 
-        para(inteiro i = 0; i < posicao; i++) {
+        // Verifica se já existe
+        para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i] == nome) {
                 existe = verdadeiro
                 escreva("Produto já existe. Digite quantidade a adicionar: ")
@@ -184,18 +186,26 @@ programa
             }
         }
 
-        se (posicao >= LIMITE) {
-            escreva("Limite de produtos atingido!\n")
-        } senao {
-            nomes[posicao] = nome
-            escreva("Digite a quantidade: ")
-            leia(quantidades[posicao])
-            escreva("Digite o preço unitário: ")
-            leia(precos[posicao])
-            posicao++
-            escreva("Produto inserido com sucesso!\n")
+        // Procura posição vazia
+        para(inteiro i = 0; i < LIMITE; i++) {
+            se (nomes[i] == "VAZIO") {
+                nomes[i] = nome
+                escreva("Digite a quantidade: ")
+                leia(quantidades[i])
+                escreva("Digite o preço unitário: ")
+                leia(precos[i])
+                escreva("Produto inserido com sucesso!\n")
+
+                // Se i == posicao, então estamos inserindo ao final da lista visível
+                se (i == posicao) {
+                    posicao = posicao + 1
+                }
+
+                retorne posicao
+            }
         }
 
+        escreva("Limite de produtos atingido!\n")
         retorne posicao
     }
 
