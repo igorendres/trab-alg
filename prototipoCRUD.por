@@ -68,8 +68,8 @@ programa
 			escreva("3 - Alterar produto\n")
 			escreva("4 - Excluir produto\n")
 			escreva("5 - Relatório financeiro\n")
-			escreva("6 - Consultar produtos por valor\n")
-			escreva("7 - Consultar produtos com baixa quantidade\n")
+			escreva("6 - Consultar produtos a partir de um valor minimo\n")
+			escreva("7 - Consultar produtos por quantidade\n")
 			escreva("8 - Voltar ao menu inicial\n")
 			escreva("Escolha uma opção: ")
 			leia(opcao)
@@ -452,7 +452,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 541; 
+ * @POSICAO-CURSOR = 2449; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
