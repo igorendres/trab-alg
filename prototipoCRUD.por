@@ -69,7 +69,7 @@ programa
 			escreva("4 - Excluir produto\n")
 			escreva("5 - Relatório financeiro\n")
 			escreva("6 - Consultar produtos a partir de um valor minimo\n")
-			escreva("7 - Consultar produtos por quantidade\n")
+			escreva("7 - Consultar produtos a partir de sua quantidade\n")
 			escreva("8 - Voltar ao menu inicial\n")
 			escreva("Escolha uma opção: ")
 			leia(opcao)
@@ -290,7 +290,7 @@ programa
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i]!="VAZIO"){
                 real subtotal = quantidades[i] * precos[i]
-                escreva("Produto: ", nomes[i],"| Quantidade em estoque: ", quantidades[i], " | Total em estoque: R$ ", subtotal, "\n")
+                escreva("Produto: ", nomes[i]," | Quantidade em estoque: ", quantidades[i], " | Total em estoque: R$ ", subtotal, "\n")
                 total = total + subtotal
             }
         }
@@ -452,7 +452,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2449; 
+ * @POSICAO-CURSOR = 10277; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
