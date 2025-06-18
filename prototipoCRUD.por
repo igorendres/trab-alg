@@ -1,5 +1,6 @@
-// Trabalho Final de Ana Claudia Wurch Seibert e Igor de Medeiros Endres
-// TADS 2025/1 - Professor: Ìgor Lorenzato Almeida
+// Trabalho Final de Algoritmos
+// Ana Claudia Wurch Seibert | 2025000434 e Igor de Medeiros Endres | 2025007490
+// TADS 2025/1 - Professor: Ígor Lorenzato Almeida
 
 programa
 {
@@ -61,18 +62,17 @@ programa
 	funcao menuEstoque(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro vendas[][], real totalVendasPorPagamento[], inteiro vendasDia, inteiro LIMITE, inteiro FORMAS_PAGAMENTO){
 	    inteiro opcao = 0
 	    enquanto (opcao != 8) {
-	        escreva("\n--- MENU DE CONTROLE DE ESTOQUE ---\n")
-	        escreva("1 - Inserir item no sistema\n")
-	        escreva("2 - Listar produtos\n")
-	        escreva("3 - Alterar produto\n")
-	        escreva("4 - Excluir produto\n")
-	        escreva("5 - Relatório financeiro\n")
-	        escreva("6 - Consultar produtos por valor\n")
-            escreva("7 - Consultar produtos com baixa quantidade\n")
-            escreva("8 - Voltar ao menu inicial\n")
-	        escreva("Escolha uma opção: ")
-	        leia(opcao)
-	
+			escreva("\n--- MENU DE CONTROLE DE ESTOQUE ---\n")
+			escreva("1 - Inserir item no sistema\n")
+			escreva("2 - Listar produtos\n")
+			escreva("3 - Alterar produto\n")
+			escreva("4 - Excluir produto\n")
+			escreva("5 - Relatório financeiro\n")
+			escreva("6 - Consultar produtos por valor\n")
+			escreva("7 - Consultar produtos com baixa quantidade\n")
+			escreva("8 - Voltar ao menu inicial\n")
+			escreva("Escolha uma opção: ")
+			leia(opcao)
             escolha (opcao){
                 caso 1:
                     limpa()
@@ -223,8 +223,8 @@ programa
     {
         cadeia nomeBusca
         inteiro opcao
-
-        escreva("\nDigite o nome do produto a alterar: ")
+	   listarProdutos(nomes, quantidades, precos, posicao, LIMITE, FORMAS_PAGAMENTO)
+        escreva("\nDigite o nome do produto que deseja alterar: ")
         leia(nomeBusca)
 
         para(inteiro i = 0; i < LIMITE; i++) {
@@ -267,7 +267,7 @@ programa
     funcao excluirProduto(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         cadeia nomeBusca
-        escreva("\nDigite o nome do produto a excluir: ")
+        escreva("\nDigite o nome do produto que deseja excluir: ")
         leia(nomeBusca)
 
         para(inteiro i = 0; i < LIMITE; i++) {
@@ -290,7 +290,7 @@ programa
         para(inteiro i = 0; i < LIMITE; i++) {
             se (nomes[i]!="VAZIO"){
                 real subtotal = quantidades[i] * precos[i]
-                escreva("Produto: ", nomes[i], " | Total em estoque: R$ ", subtotal, "\n")
+                escreva("Produto: ", nomes[i],"| Quantidade em estoque: ", quantidades[i], " | Total em estoque: R$ ", subtotal, "\n")
                 total = total + subtotal
             }
         }
@@ -300,7 +300,7 @@ programa
     funcao consultaProdutosPorValorMinimo(cadeia nomes[], inteiro quantidades[], real precos[], inteiro posicao, inteiro LIMITE, inteiro FORMAS_PAGAMENTO)
     {
         real valorMinimo
-        escreva("Digite o valor mínimo para listar os produtos: R$ ")
+        escreva("Exibir produtos com o valor a partir de: R$ ")
         leia(valorMinimo)
         limpa()
 
@@ -327,7 +327,7 @@ programa
         inteiro limiteQuantidade
         logico encontrou = falso
 
-        escreva("Digite o valor máximo de quantidade para exibir os produtos: ")
+        escreva("Exibir produtos com a quantidade menor que: ")
         leia(limiteQuantidade)
         limpa()
 
@@ -372,10 +372,10 @@ programa
         escreva("\n--- NOVA VENDA ---\n")
 
         faca {
-            escreva("Digite o nome do produto (ou 'fim' para encerrar): ")
+            escreva("Digite o nome do produto que deseja vender (ou 'cancelar' para cancelar a venda): ")
             leia(nomeBusca)
 
-            se (nomeBusca == "fim") {
+            se (nomeBusca == "cancelar") {
                 pare
             }
 
@@ -384,7 +384,7 @@ programa
                 se (nomes[i] == nomeBusca) {
                     existe = verdadeiro
                     escreva("Quantidade disponível: ", quantidades[i], "\n")
-                    escreva("Digite a quantidade a vender: ")
+                    escreva("Digite a quantidade que deseja vender: ")
                     leia(qtdVenda)
                     
                     se (qtdVenda > quantidades[i] ou quantidades[i] == 0) {
@@ -410,7 +410,7 @@ programa
                 escreva("Produto não encontrado.\n")
             }
 
-        } enquanto(nomeBusca == "fim")
+        } enquanto(nomeBusca == "cancelar")
 
         retorne vendasDia
     }
@@ -452,9 +452,9 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 2303; 
+ * @POSICAO-CURSOR = 541; 
  * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = {nomes, 10, 15, 5}-{quantidades, 11, 16, 11};
+ * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
  * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
  */
